@@ -15,7 +15,7 @@ $('form').on('submit', function (event) {
 
 app.getUserInput = function() {
   userInput = $('#search').val();
-  console.log(userInput);
+  // console.log(userInput);
   app.getSimilarArtists(userInput);
 }
 
@@ -28,12 +28,47 @@ app.getSimilarArtists = function(artist){
       format: 'json',
       artist: artist,
       autocorrect: 1,
-      limit: 8
+      limit: 10
     }
   }).then(function (result) {
-    console.log(result);
+    // console.log(result.similarartists.artist);
+    const artistMatch = result.similarartists.artist;
+    // console.log(artistMatch)
+   const artistIdFilter = artistMatch.filter((artist) => {
+      return artist.mbid;
+    })
+
+   const artistIds = artistIdFilter.map((id) => {
+      return id.mbid;
+    })
+    artistIds.forEach((id) => {
+      app.getAlbumInfo(id);
+    })
+    // console.log(artistIds);
   })
 }
+
+//this method gets similiar artist recommendations album info
+app.getAlbumInfo = function(id){
+  $.ajax({
+    url: app.url,
+    data: {
+      api_key: app.apiKey,
+      method: 'artist.gettopalbums',
+      format: 'json',
+      mbid: id,
+      limit: 1
+    }
+  }).then(function(result){
+    console.log(result.topalbums);
+    const albumArt = 
+  })
+}
+
+// app.getAlbumInfo("38f59974-2f4d-4bfa-b2e3-d2696de1b675");
+
+//
+
 
 app.init = function() {
   
