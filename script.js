@@ -6,12 +6,14 @@ app.url = "http://ws.audioscrobbler.com/2.0/";
 
 let userInput = '';
 
+
 //method to store user's input into the user input variable
 
 $('form').on('submit', function (event) {
   event.preventDefault();
   app.getUserInput();
   app.getSimilarArtists(userInput); //moved to here
+  app.albumIdArray = [];
 })
 
 app.getUserInput = function () {
@@ -42,12 +44,10 @@ app.getSimilarArtists = function (artist) {
       const artistIds = artistIdFilter.map((id) => {
         return id.mbid;
       })
-      console.log(artistIds);
-      // artistIds.forEach((id) => {
-      //     app.getTopAlbum(id);
-      // })
-      let test = app.getTopAlbum(...artistIds);
-      console.log(test);
+      // console.log(artistIds);
+      artistIds.forEach((id) => {
+        app.getTopAlbum(id);
+      })
     })
 }
 
@@ -65,9 +65,19 @@ app.getTopAlbum = function (artistId) {
   })
   $.when(topAlbums)
     .then((result) => {
-      console.log(result);
+
+      const albumId = result.topalbums.album[0].mbid;
+      if (albumId) {
+        app.albumIdArray.push(albumId);
+      }
+      app.albumIdArray.forEach((albumId) => {
+        app.getTopAlbumInfo(albumId);
+      })
     })
 }
+
+
+
 
 app.getTopAlbumInfo = function (albumId) {
 
@@ -78,12 +88,13 @@ app.getTopAlbumInfo = function (albumId) {
       method: 'album.getinfo',
       format: 'json',
       mbid: albumId,
-      // limit: 1
+      limit: 1
     }
   })
   $.when(albumInfo)
     .then((result) => {
       console.log(result);
+
     })
 }
 
