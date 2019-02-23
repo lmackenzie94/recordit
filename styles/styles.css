@@ -175,3 +175,18 @@ ul,
 li {
   padding: 0;
   margin: 0; }
+
+img {
+  max-width: 100%;
+  width: 100%;
+  display: block; }
+
+.recordWall {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between; }
