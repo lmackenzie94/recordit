@@ -95,14 +95,48 @@ app.getTopAlbumInfo = function (albumId) {
     app.topAlbumInfo = result;
     
     const albumCover = app.topAlbumInfo.album.image[3]['#text'];
+    const albumName = app.topAlbumInfo.album.name;
+    const artistName = app.topAlbumInfo.album.artist;
+    const albumTracks = app.topAlbumInfo.album.tracks;
 
-    $('.recordWall').append(`<div><img src=${albumCover} alt='${app.topAlbumInfo.album.name} album cover.'></div>`)
+    // if (app.topAlbumInfo.album.wiki.summary){
+    //   app.albumSummary = app.topAlbumInfo.album.wiki.summary;
+    // } 
+    
 
+    $('.recordWall').append(`
+    <div class="record">
+      <img src=${albumCover} alt='${app.topAlbumInfo.album.name} album cover.'>
+    </div>
+    <div class ="modal">
+      <div class="modalContent">
+        <span class="close">&times;</span>
+        <p>${albumName}</p>
+        <p>${artistName}</p>
+        <p>${albumTracks}</p>
+
+      </div>
+    </div>
+    `)
   })
 }
 
-$('.recordWall').on('click', 'img', function() {
-  console.log(this);
+$('.recordWall').on('click', '.record', function() {
+
+  $(this).next().css('display', 'block');
+  
+
+  // console.log(this);
+
+})
+
+$('.recordWall').on('click', '.close', function() {
+  $('.modal').css('display', 'none');
+})
+
+$('.recordWall').on('click', '.modal', function() {
+  $('.modal').css('display', 'none');
+  
 })
 
 app.init = function () {
