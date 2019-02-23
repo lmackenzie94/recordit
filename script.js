@@ -33,7 +33,7 @@ app.getSimilarArtists = function (artist) {
       format: 'json',
       artist: artist,
       autocorrect: 1,
-      limit: 20
+      limit: 15
     }
   })
   $.when(similarArtists)
@@ -68,34 +68,12 @@ app.getTopAlbum = function (artistId) {
   $.when(topAlbums)
     .then((result) => {
 
-      // console.log(result);
-
       const albumId = result.topalbums.album[0].mbid;
-      // console.log(albumId);
-
-      // if (app.albumIdArray.length === app.artistIds.length) {
 
         if (albumId) {
-          // app.albumIdArray.push(albumId);
           app.getTopAlbumInfo(albumId);
         }
-      // }
-      // app.albumIdArray.forEach((albumId) => {
-      // app.getTopAlbumInfo(albumId);
-      // })
-
-      // console.log(app.albumIdArray);
-      // app.finalArray = app.albumIdArray;
-      // console.log(app.finalArray);
-          
-      // app.cleanedUpArray = app.al
-
-      // app.finalArray = [];
-      // $.each(app.albumIdArray, function(i, el){
-      //   if($.inArray(el, app.finalArray) === -1) app.finalArray.push(el);
-      // })
-
-      // console.log(app.albumIdArray);
+  
     })
 }
 
@@ -114,14 +92,18 @@ app.getTopAlbumInfo = function (albumId) {
   $.when(albumInfo)
   .then((result) => {
     console.log(result);
-    $('.recordWall').append(
-    `<div>
-      <img src=${result.album.image[3]['#text']} alt="${result.album.name} album cover">
-      <h2>${result.album.name}</h2>
+    app.topAlbumInfo = result;
     
-    </div>`);
+    const albumCover = app.topAlbumInfo.album.image[3]['#text'];
+
+    $('.recordWall').append(`<div><img src=${albumCover} alt='${app.topAlbumInfo.album.name} album cover.'></div>`)
+
   })
 }
+
+$('.recordWall').on('click', 'img', function() {
+  console.log(this);
+})
 
 app.init = function () {
 
