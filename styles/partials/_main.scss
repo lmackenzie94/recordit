@@ -1,4 +1,12 @@
 
+h2 {
+    text-align: center;
+    color: $baseColour;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 1px;
+    font-size: 1.2rem;
+}
 .recordWall {
     display: flex;
     flex-wrap: wrap;
@@ -11,7 +19,31 @@
     background-color: white;
     width: calc(33.33% - 3%);
     margin: 1.5%;
+    position: relative;
     @include box-shadow;
+    &:focus .overlay,
+    &:hover .overlay {
+        opacity: 1;
+    }
+}
+
+.overlay {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    transition: all .2s ease-in-out;
+    i {
+        font-size: 4rem;
+    }
 }
 
 .modal {
@@ -57,7 +89,48 @@ form {
     input[type=text] {
         border-radius: 5px;
         padding: 3px 15px;
+        border: 1px solid transparent;
+        transition: all .2s ease-in-out;
     }
+    
+}
+
+input[type=text]:focus {
+    border: 1px solid red;
+}
+
+.discover:focus,
+.discover:hover {
+    background: lightgrey;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    margin-top: 20px;
+    display: inline-block;
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+    }
+    i {
+        color: #1db954;
+        margin-right: 10px;
+        font-size: 1.3rem;
+    }
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.noResults {
+    background: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    border: 1px solid black;
+    margin-top: 20px;
+    text-align: center;
 }
 
 

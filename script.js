@@ -38,7 +38,6 @@ app.getSimilarArtists = function (artist) {
   })
   $.when(similarArtists)
     .then((result) => {
-      // console.log(result);
       const artistMatch = result.similarartists.artist;
       const artistIdFilter = artistMatch.filter((artist) => {
         return artist.mbid;
@@ -50,6 +49,12 @@ app.getSimilarArtists = function (artist) {
       app.artistIds.forEach((id) => {
         app.getTopAlbum(id);
       })
+
+      if (artistMatch.length === 0) {
+        $('.recordWall').append(`<p class="noResults">Sorry friend, no matching records for ${userInput}.</p>`)
+      }
+      
+
     })
 }
 
@@ -90,7 +95,7 @@ app.getTopAlbumInfo = function (albumId) {
   })
   $.when(albumInfo)
   .then((result) => {
-    console.log(result);
+    // console.log(result);
     app.topAlbumInfo = result;
     
     const albumCover = app.topAlbumInfo.album.image[3]['#text'];
@@ -100,14 +105,15 @@ app.getTopAlbumInfo = function (albumId) {
     const albumSearchName = albumName.replace(/\s/g, '%20');
     
     $('.recordWall').append(`
-    <div class="record">
+    <div class="record" tabindex="0" role="button" aria-pressed="false">
       <img src=${albumCover} alt='${app.topAlbumInfo.album.name} album cover.'>
+      <div class="overlay"><i class="fas fa-compact-disc"></i><p>Learn More</p></div>
     </div>
-    <div class ="modal">
+    <div class ="modal active">
       <div class="modalContent">
         <span class="close">&times;</span>
-        <p>Album: ${albumName}</p>
-        <p>Artist: ${artistName}</p>
+        <p><span class="bold">Album:</span> ${albumName}</p>
+        <p><span class="bold">Artist:</span> ${artistName}</p>
         <a href=https://open.spotify.com/search/results/${artistSearchName}%20${albumSearchName} target="_blank"><i class="fab fa-spotify"></i>Listen on Spotify</a>
       </div>
     </div>
@@ -116,14 +122,20 @@ app.getTopAlbumInfo = function (albumId) {
 }
 
 $('.recordWall').on('click', '.record', function() {
-
+  console.log(this);
   $(this).next().css('display', 'block');
+})
 
+$('.recordWall').on('keydown', '.record', function(e) {
+  if (e.keyCode === 13) {
+    $(this).next().css('display', 'block');
+  }
 })
 
 $('.recordWall').on('click', '.close', function() {
   $('.modal').css('display', 'none');
 })
+
 
 $('.recordWall').on('click', '.modal', function() {
   $('.modal').css('display', 'none');
@@ -132,6 +144,7 @@ $('.recordWall').on('click', '.modal', function() {
 $('button').on('click', function() {
   $('.themeModal').css('display', 'block');
 })
+
 
 $('.close').on('click', function() {
   $('.themeModal').css('display', 'none');
@@ -156,6 +169,29 @@ $('.themeThree').on('click', function () {
   $('body').addClass('theme3');
 })
 
+$('.themeOne').on('keydown', function (e) {
+  if (e.keyCode === 13) {
+    $('body').attr('class', "");
+    $('body').addClass('theme1');
+    $('.themeModal').css('display', 'none');
+  }
+})
+
+$('.themeTwo').on('keydown', function (e) {
+  if (e.keyCode === 13) {
+    $('body').attr('class', "");
+    $('body').addClass('theme2');
+    $('.themeModal').css('display', 'none');
+  }
+})
+
+$('.themeThree').on('keydown', function (e) {
+  if (e.keyCode === 13) {
+    $('body').attr('class', "");
+    $('body').addClass('theme3');
+    $('.themeModal').css('display', 'none');
+  }
+})
 
 
 

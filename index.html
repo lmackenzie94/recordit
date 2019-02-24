@@ -11,38 +11,38 @@
 </head>
 <body class="theme1">
     <a href="#main" class="skipLink">Skip to main content</a>
-    <header class="wrapper clearfix">
+    <header class="wrapper">
         <h1>Recordit</h1>
-        <button>Change theme</button>
-        <div class="themeModal">
-            <div class="themeModalContent">
-                <span class="close">&times;</span>
-                <div class="theme themeOne">
-                    <img src="assets/theme1.jpg" alt="Pink background with yellow overlapping geometric shapes.">
-                </div>
-                <div class="theme themeTwo">
-                    <img src="assets/theme2.jpg" alt="Purple background with mint green overlapping diamonds.">
-                </div>
-                <div class="theme themeThree">
-                    <img src="assets/theme3.jpg" alt="Blue background with orange moroccan pattern.">
+        <h2>albums curated based on your favourite artist</h2>
+        <section class="wrapper clearfix">
+            <button tabindex="0"><i class="fas fa-palette"></i></button>
+            <div class="themeModal">
+                <div class="themeModalContent">
+                    <span class="close">&times;</span>
+                    <div class="theme themeOne" tabindex="0">
+                        <img src="assets/theme1.jpg" alt="Pink background with yellow overlapping geometric shapes.">
+                    </div>
+                    <div class="theme themeTwo" tabindex="0">
+                        <img src="assets/theme2.jpg" alt="Purple background with mint green overlapping diamonds.">
+                    </div>
+                    <div class="theme themeThree" tabindex="0">
+                        <img src="assets/theme3.jpg" alt="Blue background with orange moroccan pattern.">
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     </header>
     <main id="main" class="wrapper">
-        <div>
-            <form action="">
-                <fieldset>
-                    <legend class="visuallyHidden">Search for artist</legend>
-                    <label for="search" class="visuallyHidden"></label>
-                    <input type="text" id="search" placeholder="Search for artist..." required>
-                    <input type="submit" value="Discover" class="discover">
-                </fieldset>
-            </form>
-        </div>
+        <form action="">
+            <fieldset>
+                <legend class="visuallyHidden">Search your artist</legend>
+                <label for="search" class="visuallyHidden"></label>
+                <input type="text" id="search" placeholder="search artist..." required>
+                <input type="submit" value="Discover" class="discover">
+            </fieldset>
+        </form>
         <section class="recordWall"></section>
     </main>
-    <!-- <footer>Powered by last.fm | &copy; Recordit 2019</footer> -->
 
     <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
     <script src="script.js"></script>

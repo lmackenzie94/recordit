@@ -7,11 +7,32 @@ h1 {
   font-family: $headerFont;
   font-size: 3.5rem;
   color: $baseColour;
-  clear: both;
 }
 
 button {
   float: right;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 3px 15px;
+  transition: all .2s ease-in-out;
+  position: relative;
+  top: -110px;
+  &:focus,
+  &:hover {
+    color: #2cbdc6;
+  }
+  
+}
+
+.fa-palette {
+  background: white;
+  font-size: 1.4rem;
+  padding: 5px;
+  border-radius: 15px;
+  border: 1px solid black;
+}
+
+input[type=submit] {
   background-color: white;
-  border: none;
 }
