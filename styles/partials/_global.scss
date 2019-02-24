@@ -18,6 +18,8 @@ $headerFont: 'Pacifico', cursive;
 $baseFont: 'Arimo', sans-serif;
 $baseColour: #1c1c1c;
 
+// GLOBAL STYLES
+
 html {
     font-size: 125%;
     line-height: 1.6;
@@ -27,6 +29,7 @@ body {
     font-size: 1rem;
     color: $baseColour;
     font-family: $baseFont;
+    padding-bottom: 2%;
 }
 
 .wrapper {

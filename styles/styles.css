@@ -163,7 +163,8 @@ html {
 body {
   font-size: 1rem;
   color: #1c1c1c;
-  font-family: "Arimo", sans-serif; }
+  font-family: "Arimo", sans-serif;
+  padding-bottom: 2%; }
 
 .wrapper {
   max-width: 1100px;
@@ -297,7 +298,8 @@ h2 {
   color: white;
   -webkit-transition: all .2s ease-in-out;
   -o-transition: all .2s ease-in-out;
-  transition: all .2s ease-in-out; }
+  transition: all .2s ease-in-out;
+  text-align: center; }
   .overlay i {
     font-size: 4rem; }
 
@@ -312,9 +314,9 @@ h2 {
   z-index: 1; }
 
 .modalContent {
-  width: 60%;
+  width: 50%;
   margin: 20vh auto 0 auto;
-  padding: 50px;
+  padding: 3%;
   background: white;
   text-align: center;
   position: relative;
@@ -331,6 +333,9 @@ h2 {
   transition: all .2s ease-in-out; }
   .close:hover, .close:focus {
     color: #1c1c1c; }
+
+.close + p {
+  margin: 30px 0 15px 0; }
 
 form {
   text-align: center; }
@@ -413,3 +418,51 @@ footer {
   color: #fff;
   text-align: center;
   padding: 5px 0; }
+
+@media (max-width: 575px) {
+  button {
+    top: 0;
+    float: none;
+    margin: 10px 0; }
+  .themeSection {
+    text-align: center; }
+  h2 {
+    font-size: 1rem; }
+  html {
+    line-height: 1.2; }
+  .overlay p {
+    font-size: .8rem; }
+  .overlay i {
+    font-size: 2rem; } }
+
+@media (max-width: 460px) {
+  body {
+    padding-bottom: 4%; }
+  .discover {
+    margin: 10px 0; }
+  input[type=text] {
+    text-align: center; }
+  a span {
+    display: none; }
+  a i {
+    font-size: 2rem;
+    margin: 0; }
+    a i:active {
+      color: #0f612c; }
+  .themeModalContent {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 20px; }
+  .theme {
+    width: 100px;
+    border-radius: 50%;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out; }
+    .theme:nth-of-type(2) {
+      margin: 20px 0; } }

@@ -1,4 +1,6 @@
 
+// MAIN SECTION STYLES
+
 h2 {
     text-align: center;
     color: $baseColour;
@@ -41,6 +43,7 @@ h2 {
     align-items: center;
     color: white;
     transition: all .2s ease-in-out;
+    text-align: center;
     i {
         font-size: 4rem;
     }
@@ -58,9 +61,9 @@ h2 {
 }
 
 .modalContent {
-    width: 60%;
+    width: 50%;
     margin: 20vh auto 0 auto;
-    padding: 50px;
+    padding: 3%;
     background: white;
     text-align: center;
     position: relative;
@@ -80,6 +83,10 @@ h2 {
         }
 }
 
+.close + p {
+    margin: 30px 0 15px 0;
+}
+
 form {
     text-align: center;
     fieldset {
@@ -92,7 +99,6 @@ form {
         border: 1px solid transparent;
         transition: all .2s ease-in-out;
     }
-    
 }
 
 input[type=text]:focus {
