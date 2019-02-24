@@ -7,12 +7,25 @@
     <title>Record Wall</title>
     <link rel="stylesheet" href="styles/styles.css">
 </head>
-<body>
+<body class="theme1">
     <a href="#main" class="skipLink">Skip to main content</a>
     <header class="wrapper">
         <h1>Wall Title</h1>
-        <input type="checkbox" id="modal" class="checkbox">
-        <label for="modal">Themes</label>
+        <button>Change theme</button>
+        <div class="themeModal">
+            <div class="themeModalContent">
+                <span class="close">&times;</span>
+                <div class="theme themeOne">
+                    <img src="assets/theme1.jpg" alt="Pink background with yellow overlapping geometric shapes.">
+                </div>
+                <div class="theme themeTwo">
+                    <img src="assets/theme2.jpg" alt="Purple background with mint green overlapping diamonds.">
+                </div>
+                <div class="theme themeThree">
+                    <img src="assets/theme3.jpg" alt="Blue background with orange moroccan pattern.">
+                </div>
+            </div>
+        </div>
     </header>
     <main id="main" class="wrapper">
         <div>

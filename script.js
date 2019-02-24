@@ -6,7 +6,6 @@ app.url = "http://ws.audioscrobbler.com/2.0/";
 
 let userInput = '';
 
-
 //method to store user's input into the user input variable
 
 $('form').on('submit', function (event) {
@@ -73,7 +72,6 @@ app.getTopAlbum = function (artistId) {
         if (albumId) {
           app.getTopAlbumInfo(albumId);
         }
-  
     })
 }
 
@@ -102,7 +100,6 @@ app.getTopAlbumInfo = function (albumId) {
     // if (app.topAlbumInfo.album.wiki.summary){
     //   app.albumSummary = app.topAlbumInfo.album.wiki.summary;
     // } 
-    
 
     $('.recordWall').append(`
     <div class="record">
@@ -114,7 +111,6 @@ app.getTopAlbumInfo = function (albumId) {
         <p>${albumName}</p>
         <p>${artistName}</p>
         <p>${albumTracks}</p>
-
       </div>
     </div>
     `)
@@ -124,9 +120,6 @@ app.getTopAlbumInfo = function (albumId) {
 $('.recordWall').on('click', '.record', function() {
 
   $(this).next().css('display', 'block');
-  
-
-  // console.log(this);
 
 })
 
@@ -136,8 +129,37 @@ $('.recordWall').on('click', '.close', function() {
 
 $('.recordWall').on('click', '.modal', function() {
   $('.modal').css('display', 'none');
-  
 })
+
+$('button').on('click', function() {
+  $('.themeModal').css('display', 'block');
+})
+
+$('.close').on('click', function() {
+  $('.themeModal').css('display', 'none');
+})
+
+$('.themeModal').on('click', function() {
+  $('.themeModal').css('display', 'none');
+})
+
+$('.themeOne').on('click', function() {
+  $('body').attr('class',"");
+  $('body').addClass('theme1');
+})
+
+$('.themeTwo').on('click', function () {
+  $('body').attr('class', "");
+  $('body').addClass('theme2');
+})
+
+$('.themeThree').on('click', function () {
+  $('body').attr('class', "");
+  $('body').addClass('theme3');
+})
+
+
+
 
 app.init = function () {
 
