@@ -15,6 +15,7 @@ $('form').on('submit', function (event) {
   app.albumIdArray = [];
   app.finalArray = app.albumIdArray;
   $('.recordWall').empty();
+  // $('footer').css('opacity', '1');
 })
 
 app.getUserInput = function () {
@@ -95,12 +96,9 @@ app.getTopAlbumInfo = function (albumId) {
     const albumCover = app.topAlbumInfo.album.image[3]['#text'];
     const albumName = app.topAlbumInfo.album.name;
     const artistName = app.topAlbumInfo.album.artist;
-    const albumTracks = app.topAlbumInfo.album.tracks;
-
-    // if (app.topAlbumInfo.album.wiki.summary){
-    //   app.albumSummary = app.topAlbumInfo.album.wiki.summary;
-    // } 
-
+    const artistSearchName = artistName.replace(/\s/g, '%20');
+    const albumSearchName = albumName.replace(/\s/g, '%20');
+    
     $('.recordWall').append(`
     <div class="record">
       <img src=${albumCover} alt='${app.topAlbumInfo.album.name} album cover.'>
@@ -108,9 +106,9 @@ app.getTopAlbumInfo = function (albumId) {
     <div class ="modal">
       <div class="modalContent">
         <span class="close">&times;</span>
-        <p>${albumName}</p>
-        <p>${artistName}</p>
-        <p>${albumTracks}</p>
+        <p>Album: ${albumName}</p>
+        <p>Artist: ${artistName}</p>
+        <a href=https://open.spotify.com/search/results/${artistSearchName}%20${albumSearchName} target="_blank"><i class="fab fa-spotify"></i>Listen on Spotify</a>
       </div>
     </div>
     `)

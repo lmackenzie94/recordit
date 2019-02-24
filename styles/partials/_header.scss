@@ -2,3 +2,16 @@ header {
   padding: 0 1.5%;
   text-align: center;
 }
+
+h1 {
+  font-family: $headerFont;
+  font-size: 3.5rem;
+  color: $baseColour;
+  clear: both;
+}
+
+button {
+  float: right;
+  background-color: white;
+  border: none;
+}

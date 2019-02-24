@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Record Wall</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Arimo:400,700|Pacifico" rel="stylesheet">
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body class="theme1">
     <a href="#main" class="skipLink">Skip to main content</a>
-    <header class="wrapper">
-        <h1>Wall Title</h1>
+    <header class="wrapper clearfix">
+        <h1>Recordit</h1>
         <button>Change theme</button>
         <div class="themeModal">
             <div class="themeModalContent">
@@ -33,14 +35,14 @@
                 <fieldset>
                     <legend class="visuallyHidden">Search for artist</legend>
                     <label for="search" class="visuallyHidden"></label>
-                    <input type="text" id="search" placeholder="Search for artist...">
+                    <input type="text" id="search" placeholder="Search for artist..." required>
                     <input type="submit" value="Discover" class="discover">
                 </fieldset>
             </form>
         </div>
         <section class="recordWall"></section>
     </main>
-    <footer></footer>
+    <!-- <footer>Powered by last.fm | &copy; Recordit 2019</footer> -->
 
     <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
     <script src="script.js"></script>
