@@ -126,7 +126,6 @@ app.init = function() {
 
   // event handlers 
   $('.recordWall').on('click', '.record', function () {
-    console.log(this);
     $(this).next().css('display', 'block');
   })
 
