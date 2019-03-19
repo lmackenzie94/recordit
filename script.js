@@ -1,18 +1,18 @@
-const app = {}; 
+const app = {};
 
 app.apiKey = "aa0e1ce1cb622fb5704728e8b09bd4bd";
-app.url = "http://ws.audioscrobbler.com/2.0/";
+app.url = "https://ws.audioscrobbler.com/2.0/";
 
 // global variable to store user input.
 let userInput = '';
 
 //method to store user's input into the user input variable.
-app.getUserInput = function() {
+app.getUserInput = function () {
   userInput = $('#search').val();
 }
 
 // method that returns no more than 15 similar artists based on the user input.
-app.getSimilarArtists = function(artist) {
+app.getSimilarArtists = function (artist) {
   const similarArtists = $.ajax({
     url: app.url,
     data: {
@@ -26,25 +26,28 @@ app.getSimilarArtists = function(artist) {
   })
   $.when(similarArtists)
     .then((result) => {
-      const artistMatch = result.similarartists.artist;
-      const artistIdFilter = artistMatch.filter((artist) => {
-        return artist.mbid;
-      })
-      app.artistIds = artistIdFilter.map((id) => {
-        return id.mbid;
-      })
-      
-      // passes each artist ID as argument into getTopAlbum method.
-      app.artistIds.forEach((id) => {
-        app.getTopAlbum(id);
-      })
+   
+        const artistMatch = result.similarartists.artist;
+        const artistIdFilter = artistMatch.filter((artist) => {
+          return artist.mbid;
+        })
+        app.artistIds = artistIdFilter.map((id) => {
+          return id.mbid;
+        })
 
-      // error handling - if user input has no results, append this to the page.
-      if (artistMatch.length === 0) {
-        $('.recordWall').append(`<p class="noResults">Sorry friend, no matching records for ${userInput}.</p>`)
-      }
+        // passes each artist ID as argument into getTopAlbum method.
+        app.artistIds.forEach((id) => {
+          app.getTopAlbum(id);
+        })
 
-    })
+        // error handling - if user input has no results, append this to the page.
+        if (artistMatch.length === 0) {
+          $('.recordWall').append(`<p class="noResults">Sorry friend, no matching records for ${userInput}.</p>`)
+        }
+     
+    }).catch(function(error){
+        $('.recordWall').append(`<p class="noResults">Whoops! Looks like something went wrong on the server's side. Please try again in a bit.</p>`)
+      })
 }
 
 // method that returns each similar artists' top album ID.
@@ -86,18 +89,18 @@ app.getTopAlbumInfo = function (albumId) {
     }
   })
   $.when(albumInfo)
-  .then((result) => {
-    app.topAlbumInfo = result;
-    
-    // variables to store various album details.
-    const albumCover = app.topAlbumInfo.album.image[3]['#text'];
-    const albumName = app.topAlbumInfo.album.name;
-    const artistName = app.topAlbumInfo.album.artist;
-    const artistSearchName = artistName.replace(/\s/g, '%20');
-    const albumSearchName = albumName.replace(/\s/g, '%20');
-    
-    // information to be displayed on the page.
-    $('.recordWall').append(`
+    .then((result) => {
+      app.topAlbumInfo = result;
+
+      // variables to store various album details.
+      const albumCover = app.topAlbumInfo.album.image[3]['#text'];
+      const albumName = app.topAlbumInfo.album.name;
+      const artistName = app.topAlbumInfo.album.artist;
+      const artistSearchName = artistName.replace(/\s/g, '%20');
+      const albumSearchName = albumName.replace(/\s/g, '%20');
+
+      // information to be displayed on the page.
+      $('.recordWall').append(`
     <div class="record" tabindex="0" role="button" aria-pressed="false">
       <img src=${albumCover} alt='${app.topAlbumInfo.album.name} album cover.'>
       <div class="overlay"><i class="fas fa-compact-disc"></i><p>Learn More</p></div>
@@ -111,13 +114,13 @@ app.getTopAlbumInfo = function (albumId) {
       </div>
     </div>
     `)
-  })
+    })
 }
 
-app.init = function() {
-  
+app.init = function () {
+
   // listen for form submit
-  $('form').on('submit', function(event) {
+  $('form').on('submit', function (event) {
     event.preventDefault();
     app.getUserInput();
     app.getSimilarArtists(userInput);
