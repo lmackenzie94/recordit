@@ -110,7 +110,7 @@ app.getTopAlbumInfo = function (albumId) {
         <span class="close">&times;</span>
         <p><span class="bold">Album:</span> ${albumName}</p>
         <p><span class="bold">Artist:</span> ${artistName}</p>
-        <a href=https://open.spotify.com/search/results/${artistSearchName}%20${albumSearchName} target="_blank" aria-label="Listen on Spotify"><i class="fab fa-spotify" aria-hidden="true"></i><span>Listen on Spotify</span></a>
+        <a href=https://open.spotify.com/search/${artistSearchName}%20${albumSearchName} target="_blank" aria-label="Listen on Spotify"><i class="fab fa-spotify" aria-hidden="true"></i><span>Listen on Spotify</span></a>
       </div>
     </div>
     `)
